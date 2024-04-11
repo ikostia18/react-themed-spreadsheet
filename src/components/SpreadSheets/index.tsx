@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '../Button';
 import './SpreadSheets.scss';
 
-
 interface SpreadSheetsProps {
     sheets: Record<string, number[][]>;
     selectedSheets: string[];
@@ -10,7 +9,6 @@ interface SpreadSheetsProps {
     onThemeChange?: () => void;
     isShownThemeEditor?: boolean;
 }
-
 
 const SpreadSheets: React.FC<SpreadSheetsProps> = ({ sheets, selectedSheets, onSheetSelect, onThemeChange, isShownThemeEditor }) => {
     const handleThemeChange = (): void => {

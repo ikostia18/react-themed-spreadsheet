@@ -12,31 +12,30 @@ const SheetsView: React.FC<SheetsViewProps> = ({ sheetData, sheetName }) => {
 
     const columnsCount = sheetData ? sheetData[0].length : 0;
 
-    // Should be fixed according the requirements (even / odd cell definition ???)
     const getCellStyle = (rowIndex: number, cellIndex: number): React.CSSProperties => {
-        const cellStyle: React.CSSProperties = {};
-
         const isEvenRow = (rowIndex + 1) % 2 === 0;
-        const isEvenCell = sheetData && sheetData[rowIndex][cellIndex] % 2 === 0;
+        const isEvenCellValue = sheetData && sheetData[rowIndex][cellIndex] % 2 === 0;
 
-        if (isEvenRow) {
-            cellStyle.color = theme.evenRows.color;
-            cellStyle.backgroundColor = theme.evenRows.backgroundColor;
+        const cellStyle: React.CSSProperties = {
+            color: isEvenRow ? theme.evenRows.color : theme.oddRows.color,
+            backgroundColor: isEvenRow ? theme.evenRows.backgroundColor : theme.oddRows.backgroundColor
+        };
+
+        if (isEvenCellValue) {
+            if (theme.evenCells.color) {
+                cellStyle.color = theme.evenCells.color;
+            }
+            if (theme.evenCells.backgroundColor) {
+                cellStyle.backgroundColor = theme.evenCells.backgroundColor;
+            }
+        } else {
+            if (theme.oddCells.color) {
+                cellStyle.color = theme.oddCells.color;
+            }
+            if (theme.oddCells.backgroundColor) {
+                cellStyle.backgroundColor = theme.oddCells.backgroundColor;
+            }
         }
-        else if (!isEvenRow) {
-            cellStyle.color = theme.oddRows.color;
-            cellStyle.backgroundColor = theme.oddRows.backgroundColor;
-        }
-
-        // if (isEvenCell && (!!theme.evenCells.color || !!theme.evenCells.backgroundColor)) {
-        //     cellStyle.color = theme.evenCells.color;
-        //     cellStyle.backgroundColor = theme.evenCells.backgroundColor;
-        // }
-
-        // else if (!isEvenCell) {
-        //     cellStyle.color = theme.oddCells.color;
-        //     cellStyle.backgroundColor = theme.oddCells.backgroundColor;
-        // }
 
         return cellStyle;
     };
