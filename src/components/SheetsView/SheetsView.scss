@@ -1,0 +1,32 @@
+.sheet-container {
+  .sheet-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .sheet-headers,
+  .sheet-row {
+    display: flex;
+    justify-content: start;
+    margin: 4px;
+  }
+
+  .cell {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-right: 4px;
+    text-align: center;
+    min-width: 40px;
+  }
+
+  .header {
+    font-weight: bold;
+    background-color: #d3defb;
+  }
+
+  .sum {
+    font-weight: bold;
+    background-color: #bbdefb;
+  }
+}

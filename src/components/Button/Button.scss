@@ -1,0 +1,19 @@
+.button {
+    width: 250px;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 4px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #ccc;
+    }
+
+    &.button--selected {
+        background-color: #007bff;
+        color: white;
+    }
+}
