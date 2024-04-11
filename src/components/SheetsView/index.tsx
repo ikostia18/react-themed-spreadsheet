@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import './SheetsView.scss';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
@@ -12,7 +12,7 @@ const SheetsView: React.FC<SheetsViewProps> = ({ sheetData, sheetName }) => {
 
     const columnsCount = sheetData ? sheetData[0].length : 0;
 
-    const getCellStyle = (rowIndex: number, cellIndex: number): React.CSSProperties => {
+    const getCellStyle = useMemo(() => (rowIndex: number, cellIndex: number): React.CSSProperties => {
         const isEvenRow = (rowIndex + 1) % 2 === 0;
         const isEvenCellValue = sheetData && sheetData[rowIndex][cellIndex] % 2 === 0;
 
@@ -38,7 +38,7 @@ const SheetsView: React.FC<SheetsViewProps> = ({ sheetData, sheetName }) => {
         }
 
         return cellStyle;
-    };
+    }, [theme, sheetData]);
 
     return (
         <div className="sheet-container">
